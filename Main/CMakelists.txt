@@ -1,0 +1,7 @@
+cmake_minimum_required (VERSION 3.9)
+
+set(Main_sources "main.cpp")
+set(Main_headers)
+
+add_executable(Main ${Main_sources} ${Main_headers})
+target_link_libraries(Main LINK_PUBLIC A B)

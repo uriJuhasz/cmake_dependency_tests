@@ -1,0 +1,9 @@
+cmake_minimum_required (VERSION 3.9)
+
+set(B_sources "b.cpp")
+set(B_headers "b.h")
+
+add_library (B SHARED ${B_sources} ${B_headers})
+target_link_libraries(B LINK_PUBLIC A)
+target_include_directories (B PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+GENERATE_EXPORT_HEADER(B)

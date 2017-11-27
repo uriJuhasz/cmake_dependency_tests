@@ -1,0 +1,35 @@
+cmake_minimum_required (VERSION 3.9)
+include (GenerateExportHeader)
+
+project (cmake_test)
+
+set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD_REQUIRED YES)
+set (CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_VERBOSE_MAKEFILE on)
+
+set(MYPRJOUTDIR ${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${MYPRJOUTDIR})
+
+message ( "The compiler is: ${CMAKE_CXX_COMPILER_ID}" )
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  # using Clang
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  # using GCC
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
+  # using Intel C++
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  # using Visual Studio C++
+	set (CMAKE_CXX_FLAGS "/Za /W4 /MP /GF /Gm /EHsc /Gy /arch:AVX2 /fp:precise /fp:except /Zc:rvalueCast /GR /openmp /std:c++17")
+	set (CMAKE_CXX_FLAGS_DEBUG "/sdl /RTCc /GS /Zi")
+	set (CMAKE_CXX_FLAGS_RELWITHDEBINFO "/Zi /Ox /Ob2 /Oi /Ot /GL")
+	set (CMAKE_SHARED_LINKER_FLAGS "/LTCG")
+endif()
+
+
+
+add_subdirectory (A)
+add_subdirectory (B)
+add_subdirectory (Main)

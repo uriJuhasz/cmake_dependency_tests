@@ -1,0 +1,12 @@
+cmake_minimum_required (VERSION 3.9)
+
+set(A_sources "a.cpp")
+set(A_headers "a.h")
+
+add_library (A SHARED ${A_sources} ${A_headers})
+target_include_directories (A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/include)
+
+
+message( "A.src_dir: ${CMAKE_CURRENT_SOURCE_DIR}")
+message( "A.bin_dir: ${CMAKE_CURRENT_BINARY_DIR}")
+GENERATE_EXPORT_HEADER(A)
